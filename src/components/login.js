@@ -26,7 +26,7 @@ export default class LoginPage extends React.Component {
                 </GoogleLogout>
                 <p>{this.props.userName}</p>
                 <p>{this.props.userEmail}</p>
-                <img src={this.props.userImage} alt="profile picture" />
+                <img src={this.props.userImage} alt="profile" />
              </div>
              : <GoogleLogin
                     clientId="874718926305-grki27ri5ftf1122h1ouk1j7pcns7utq.apps.googleusercontent.com"

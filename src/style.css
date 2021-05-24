@@ -1,3 +1,20 @@
 h1, p {
   font-family: Lato;
 }
+
+.home {
+  overflow: hidden;
+  padding: 10px;
+}
+
+.home-page-intro {
+  font-size: 5vw !important;
+  margin: 5px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
