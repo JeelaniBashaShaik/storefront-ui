@@ -2,10 +2,9 @@ import React from 'react';
 import storeImage from './../assets/images/storefront-main.jpg';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import LoginPage from '../containers/login';
 
-// import LoginPage from './../containers/login';
-
-export const Home = () => {
+export const Landing = () => {
   return (
     <React.Fragment>
       <div className="home">
@@ -13,7 +12,7 @@ export const Home = () => {
         <Grid item sm={12} md={6} lg={6}>
           <div className="center">
             <Typography variant="h1" gutterBottom className="home-page-intro">
-              Welcome to StoreFront. Now browse and place orders from your nearby stores
+              Welcome to <strong>StoreFront</strong>. Now browse and place orders from your nearby stores
             </Typography>
         </div>
         </Grid>
@@ -23,6 +22,9 @@ export const Home = () => {
         </div>
         </Grid>
         <Grid item sm={12} md={6} lg={6}>
+        <div className="center">
+          <LoginPage />
+        </div>
         </Grid>
         </Grid>
       </div>
