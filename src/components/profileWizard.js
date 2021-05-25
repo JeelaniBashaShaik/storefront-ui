@@ -15,9 +15,10 @@ export default class ProfileWizard extends React.Component {
 
     render() {
         return (
-            <AppBar position="static">
+            <div style={{flexGrow: 1}}>
+        <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6">
+            <Typography variant="h6" style={{flexGrow: 1}}>
               StoreFront
             </Typography>
             
@@ -34,6 +35,7 @@ export default class ProfileWizard extends React.Component {
                 </GoogleLogout>
           </Toolbar>
         </AppBar>
+        </div>
         )
     }
 }
