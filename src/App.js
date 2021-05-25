@@ -5,6 +5,7 @@ import store from './redux/store';
 
 import { Landing } from './components/landing';
 import './style.css';
+import ProtectedRoute from './containers/protectedRoute';
 import ProfileWizard from './containers/profileWizard';
 
 export default function App() {
@@ -15,10 +16,9 @@ export default function App() {
           <Route exact path="/">
             <Landing />
           </Route>
-          <Route exact path="/landing">
-            <Landing />
-          </Route>
-          <Route path="/profileWizard" component={ProfileWizard} />
+          <ProtectedRoute path="/profileWizard">
+            <ProfileWizard />
+          </ProtectedRoute>
         </Switch>
       </Router>
     </Provider>
