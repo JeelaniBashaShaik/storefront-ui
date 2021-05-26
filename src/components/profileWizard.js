@@ -17,7 +17,11 @@ import Grid from '@material-ui/core/Grid';
 export default class ProfileWizard extends React.Component {
 
     state = {
-      activeStep: 0
+      activeStep: 0,
+      userRole: '',
+      userPrimaryNumber: '',
+      userSecondaryNumber: '',
+      userAddress: ''
     }
 
     logout = () => {
@@ -33,6 +37,10 @@ export default class ProfileWizard extends React.Component {
     handleNext = () => {
       const activeStep = this.state.activeStep;
       this.setState({activeStep: activeStep + 1});
+    }
+
+    setRole = (role) => {
+      this.setState({userRole: role});
     }
 
     render() {
@@ -77,24 +85,30 @@ export default class ProfileWizard extends React.Component {
           {this.state.activeStep === 1 && <div>
             <Grid container spacing={3}>
               <Grid item sm={12} md={6} lg={6}>
-                <Paper elevation={3}>
+                <Paper elevation={3} onClick={() => this.setRole('Store-Operator')}>
                 <img src={storeOperatorLogo} alt="store Operator" height="100" widht="150"/>
                 <div class="center">Store Operator</div>
               </Paper>
               </Grid>
               <Grid item sm={12} md={6} lg={6}>
-                <Paper elevation={3}>
+                <Paper elevation={3} onClick={() => this.setRole('Consumer')}>
                 <img src={consumerLogo} alt="consumer Operator" height="100" widht="150"/>
                 <div class="center">Consumer</div>
               </Paper>
               </Grid>
             </Grid>
-           
+            {this.state.userRole && <Paper elevation={3}>Selected Role: {this.state.userRole}</Paper>}
           </div>
 
           }
+
+          {this.state.activeStep === 2 && <div>
+
+          </div>
+          }
         </div>
-        <div style={{position: 'absolute', bottom: '0'}}>
+        
+        <div>
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '20px'}}>
               <Button
                 disabled={this.state.activeStep === 0}
