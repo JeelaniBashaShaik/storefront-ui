@@ -4,7 +4,9 @@ import ProfileWizard from './../components/profileWizard';
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        userName: state.user.userName,
+        userEmail: state.user.userEmail
     }
 };
 
