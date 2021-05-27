@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -36,7 +37,31 @@ export default class ProfileWizard extends React.Component {
 
     handleNext = () => {
       const activeStep = this.state.activeStep;
-      this.setState({activeStep: activeStep + 1});
+      if (activeStep !== 1) {
+        this.setState({activeStep: activeStep + 1});
+      } else {
+        const saveProfileRequest = {
+          userRole: this.state.userRole,
+          userName: this.props.userName,
+          userEmail: this.props.userEmail,
+          userPrimaryNumber: this.state.userPrimaryNumber,
+          userSecondaryNumber: this.state.userSecondaryNumber,
+          userAddress: this.state.userAddress
+        }
+        this.props.saveProfile(saveProfileRequest);
+      }
+    }
+
+    setUserPrimaryNumber = (event) => {
+      this.setState({userPrimaryNumber: event.target.value});
+    }
+
+    setUserSecondaryNumber = (event) => {
+      this.setState({userSecondaryNumber: event.target.value});
+    }
+
+    setUserAddress = (event) => {
+      this.setState({userAddress: event.target.value});
     }
 
     setRole = (role) => {
@@ -44,6 +69,7 @@ export default class ProfileWizard extends React.Component {
     }
 
     render() {
+      console.log(this.props.canNavigateToWelcome, 'canNavigatetoHome');
         return (
             <div style={{flexGrow: 1}}>
         <AppBar position="static">
@@ -77,34 +103,31 @@ export default class ProfileWizard extends React.Component {
           {this.state.activeStep === 0 && <div>
             <div><TextField id="userName" label="Name" disabled  variant="outlined" defaultValue={this.props.userName}/></div>
             <div style={{marginTop: '10px'}}><TextField id="userEmail" label="Email"  variant="outlined" disabled defaultValue={this.props.userEmail}/></div>
-            <div style={{marginTop: '10px'}}><TextField id="userPrimaryNumber"  variant="outlined" label="Primary Number"/></div>
-            <div style={{marginTop: '10px'}}><TextField id="userSecondaryNumber"  variant="outlined" label="Secondary Number"/></div>
-            <div style={{marginTop: '10px'}}><TextField id="userAddress"  variant="outlined" label="Address" multiline rows={4}/></div>
+            <div style={{marginTop: '10px'}}><TextField id="userPrimaryNumber"  variant="outlined" value={this.state.userPrimaryNumber} onChange={this.setUserPrimaryNumber}  label="Primary Number"/></div>
+            <div style={{marginTop: '10px'}}><TextField id="userSecondaryNumber"  variant="outlined" value={this.state.userSecondaryNumber} onChange={this.setUserSecondaryNumber} label="Secondary Number"/></div>
+            <div style={{marginTop: '10px'}}><TextField style={{width: '100%'}} id="userAddress" value={this.state.userAddress} onChange={this.setUserAddress}   variant="outlined" label="Address" multiline rows={4}/></div>
           </div>}
 
           {this.state.activeStep === 1 && <div>
             <Grid container spacing={3}>
               <Grid item sm={12} md={6} lg={6}>
                 <Paper elevation={3} onClick={() => this.setRole('Store-Operator')}>
-                <img src={storeOperatorLogo} alt="store Operator" height="100" widht="150"/>
-                <div class="center">Store Operator</div>
+                  <div style={{height:'150px', width: '150px'}} className="center">
+                    <Typography variant="h6">Store Operator</Typography>
+                  </div>
               </Paper>
               </Grid>
               <Grid item sm={12} md={6} lg={6}>
                 <Paper elevation={3} onClick={() => this.setRole('Consumer')}>
-                <img src={consumerLogo} alt="consumer Operator" height="100" widht="150"/>
-                <div class="center">Consumer</div>
+                <div style={{height:'150px', width: '150px'}} className="center">
+                    <Typography variant="h6">Consumer</Typography>
+                  </div>
               </Paper>
               </Grid>
             </Grid>
             {this.state.userRole && <Paper elevation={3}>Selected Role: {this.state.userRole}</Paper>}
           </div>
 
-          }
-
-          {this.state.activeStep === 2 && <div>
-
-          </div>
           }
         </div>
         
@@ -120,6 +143,7 @@ export default class ProfileWizard extends React.Component {
                 {this.state.activeStep === 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
+            {this.props.canNavigateToWelcome && <Redirect to="/welcome" />}
             </div>
         </div>
         )

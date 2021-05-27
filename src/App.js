@@ -7,6 +7,7 @@ import { Landing } from './components/landing';
 import './style.css';
 import ProtectedRoute from './containers/protectedRoute';
 import ProfileWizard from './containers/profileWizard';
+import WelcomeScreen from './components/welcome';
 
 export default function App() {
   return (
@@ -18,6 +19,9 @@ export default function App() {
           </Route>
           <ProtectedRoute path="/profileWizard">
             <ProfileWizard />
+          </ProtectedRoute>
+          <ProtectedRoute path="/welcome">
+            <WelcomeScreen />
           </ProtectedRoute>
         </Switch>
       </Router>
