@@ -10,8 +10,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import consumerLogo from './../assets/images/consumer.png';
-import storeOperatorLogo from './../assets/images/store-operator.png';
 import Grid from '@material-ui/core/Grid';
 
 
