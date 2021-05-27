@@ -1,10 +1,14 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import storeImage from './../assets/images/storefront-main.jpg';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import LoginPage from '../containers/login';
 
-export const Landing = () => {
+const Landing = (props) => {
+  if (props.userRole) {
+    return <Redirect to="/home" />
+  }
   return (
     <React.Fragment>
       <div className="home">
@@ -31,3 +35,5 @@ export const Landing = () => {
     </React.Fragment>
   );
 };
+
+export default Landing;

@@ -8,6 +8,11 @@ export default class LoginPage extends React.Component {
         const profileObj = response.profileObj;
         const userProfile = { name: profileObj.name, email: profileObj.email, imageUrl: profileObj.imageUrl };
         this.props.login(userProfile);
+        this.checkForUser(userProfile.email);
+    }
+
+    checkForUser = (email) => {
+        this.props.checkForUser(email);
     }
 
     render() {

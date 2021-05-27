@@ -1,10 +1,11 @@
-import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL } from '../types/login';
+import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED } from '../types/login';
 
 const initialState = {
   isLoggedIn: false,
   userName: '',
   userEmail: '',
   userImage: '',
+  userRole: '',
   userPrimaryNumber: '',
   userSecondaryNumber: '',
   userAddress: '',
@@ -13,7 +14,7 @@ const initialState = {
 };
 
 export const LoginReducer = (state = initialState, action) => {
-  console.log(action, 'action in loginReducer')
+  console.log(action, 'inside reducer')
   switch (action.type) {
     case LOGIN: {
         return {
@@ -41,6 +42,12 @@ export const LoginReducer = (state = initialState, action) => {
         ...state,
         canNavigateToWelcome: false
       };
+    }
+    case USER_VERIFIED: {
+      return {
+        ...state,
+        userRole: action.payload.userRole
+      }
     }
     default: {
       return state;

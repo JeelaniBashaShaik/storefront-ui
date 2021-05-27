@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import store from './redux/store';
 
-import { Landing } from './components/landing';
+import Landing from './containers/landing';
 import './style.css';
 import ProtectedRoute from './containers/protectedRoute';
 import ProfileWizard from './containers/profileWizard';
 import WelcomeScreen from './components/welcome';
+import Home from './containers/home';
 
 export default function App() {
   return (
@@ -22,6 +23,9 @@ export default function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/welcome">
             <WelcomeScreen />
+          </ProtectedRoute>
+          <ProtectedRoute path="/home">
+            <Home />
           </ProtectedRoute>
         </Switch>
       </Router>

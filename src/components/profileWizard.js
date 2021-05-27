@@ -67,10 +67,13 @@ export default class ProfileWizard extends React.Component {
     }
 
     render() {
-      console.log(this.props.canNavigateToWelcome, 'canNavigatetoHome');
+      const userRole = this.props.userRole;
+      if (userRole) {
+        return <Redirect to="/home" />;
+      }
         return (
             <div style={{flexGrow: 1}}>
-        <AppBar position="static">
+       {/*  <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" style={{flexGrow: 1}}>
               StoreFront
@@ -87,7 +90,7 @@ export default class ProfileWizard extends React.Component {
                 >
                 </GoogleLogout>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
         <Stepper activeStep={this.state.activeStep} alternativeLabel> 
           <Step key="1">
             <StepLabel>Basic Details</StepLabel>
