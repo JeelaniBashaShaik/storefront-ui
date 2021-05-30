@@ -1,6 +1,5 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
-import { Redirect } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class LoginPage extends React.Component {
