@@ -20,11 +20,6 @@ export default class ProfileWizard extends React.Component {
       userAddress: ''
     }
 
-    logout = () => {
-        this.props.logout();
-        this.props.history.push('/');
-    }
-
     handleBack = () => {
       const activeStep = this.state.activeStep;
       this.setState({activeStep: activeStep - 1});
@@ -64,30 +59,8 @@ export default class ProfileWizard extends React.Component {
     }
 
     render() {
-      const userRole = this.props.userRole;
-      if (userRole) {
-        return <Redirect to="/home" />;
-      }
         return (
             <div style={{flexGrow: 1}}>
-       {/*  <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" style={{flexGrow: 1}}>
-              StoreFront
-            </Typography>
-            <GoogleLogout
-                clientId="874718926305-grki27ri5ftf1122h1ouk1j7pcns7utq.apps.googleusercontent.com"
-                buttonText="Logout"
-                onLogoutSuccess={this.logout}
-                render={renderProps => (
-                    <Button color="secondary" variant="contained" onClick={renderProps.onClick} >
-                        Logout
-                    </Button>
-                  )}
-                >
-                </GoogleLogout>
-          </Toolbar>
-        </AppBar> */}
         <Stepper activeStep={this.state.activeStep} alternativeLabel> 
           <Step key="1">
             <StepLabel>Basic Details</StepLabel>
@@ -133,8 +106,7 @@ export default class ProfileWizard extends React.Component {
         <div style={{display: 'flex', justifyContent: 'space-between', margin: '20px'}}>
               <Button
                 disabled={this.state.activeStep === 0}
-                onClick={this.handleBack}
-              >
+                onClick={this.handleBack}>
                 Back
               </Button>
               <Button variant="contained" color="primary" onClick={this.handleNext}>

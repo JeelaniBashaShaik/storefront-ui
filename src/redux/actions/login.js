@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED } from '../types/login';
+import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START } from '../types/login';
 import axios from 'axios';
 
 const serverUrl = 'https://storefront-be.herokuapp.com';
@@ -9,12 +9,16 @@ export const logout = () => ({type: LOGOUT});
 
 export const userVerified = (payload) => ({type: USER_VERIFIED, payload});
 
-export const checkForUser = (email) => {
+export const apiCallStart = () => ({type: API_START});
+
+export const checkForUser = (userProfile) => {
     return (dispatch) => {
-        axios.get(`${serverUrl}/user/${email}`).then(({data}) => {
-            console.log(data, 'res');
+        dispatch(apiCallStart());
+        axios.get(`${serverUrl}/user/${userProfile.email}`).then(({data}) => {
             if (data && data.success) {
-                dispatch(userVerified({userRole: data.userRole}));
+                dispatch(userVerified(data));
+            } else {
+                dispatch(login(userProfile));
             }
         })
     }

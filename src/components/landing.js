@@ -8,6 +8,8 @@ import LoginPage from '../containers/login';
 const Landing = (props) => {
   if (props.userRole) {
     return <Redirect to="/home" />
+  } else if (!props.userRole && props.isLoggedIn) {
+    return <Redirect to="/profileWizard" />
   }
   return (
     <React.Fragment>

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED } from '../types/login';
+import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START } from '../types/login';
 
 const initialState = {
   isLoggedIn: false,
@@ -14,7 +14,6 @@ const initialState = {
 };
 
 export const LoginReducer = (state = initialState, action) => {
-  console.log(action, 'inside reducer')
   switch (action.type) {
     case LOGIN: {
         return {
@@ -22,7 +21,8 @@ export const LoginReducer = (state = initialState, action) => {
             isLoggedIn: true,
             userName: action.payload.name,
             userEmail: action.payload.email,
-            userImage: action.payload.imageUrl
+            userImage: action.payload.imageUrl,
+            isApiCall: false
         }; 
     }
     case LOGOUT: {
@@ -44,9 +44,23 @@ export const LoginReducer = (state = initialState, action) => {
       };
     }
     case USER_VERIFIED: {
+      const { userRole, userEmail, userName, userAddress, userPrimaryNumber, userSecondaryNumber } = action.payload;
       return {
         ...state,
-        userRole: action.payload.userRole
+        userRole,
+        userEmail,
+        userName,
+        userAddress,
+        userPrimaryNumber,
+        userSecondaryNumber,
+        isLoggedIn: true,
+        isApiCall: false
+      }
+    }
+    case API_START: {
+      return {
+        ...state,
+        isApiCall: true
       }
     }
     default: {

@@ -3,7 +3,8 @@ import Landing from './../components/landing';
 
 const mapStateToProps = (state) => {
     return {
-        userRole: state.user.userRole
+        userRole: state.user.userRole,
+        isLoggedIn: state.user.isLoggedIn
     }
 };
 
