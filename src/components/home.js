@@ -4,22 +4,8 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { GoogleLogout } from 'react-google-login';
-import Snackbar from '@material-ui/core/Snackbar';
 
 export default class Home extends React.Component {
-
-    state = {
-        showToast: false
-    }
-
-    componentDidMount() {
-        window['isUpdateAvailable'].then(isAvailable => {
-            if (isAvailable) {
-                this.setState({showToast: true});
-                alert('new version available');
-            }
-        });
-    }
 
     logout = () => {
         this.props.logout();
@@ -49,15 +35,6 @@ export default class Home extends React.Component {
                 <Typography variant="h6" style={{flexGrow: 1}}>
                     Home
                 </Typography>
-                <Snackbar
-                    anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                    }}
-                    open={this.state.showToast}
-                    autoHideDuration={10000}
-                    message="New Content Available. Refresh !!!"
-                />
             </div>
         )
     }
