@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START } from '../types/login';
+import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START, LOGIN_FAILED, SIGNUP_FAILED } from '../types/login';
 
 const initialState = {
   isLoggedIn: false,
@@ -10,7 +10,9 @@ const initialState = {
   userSecondaryNumber: '',
   userAddress: '',
   userAcessToken: {},
-  canNavigateToWelcome: false
+  canNavigateToWelcome: false,
+  showLoginError: false,
+  errorMessage: ''
 };
 
 export const LoginReducer = (state = initialState, action) => {
@@ -55,6 +57,23 @@ export const LoginReducer = (state = initialState, action) => {
         userSecondaryNumber,
         isLoggedIn: true,
         isApiCall: false
+      }
+    }
+    case LOGIN_FAILED: {
+      console.log('login failed', action.payload)
+      return {
+        ...state,
+        isApiCall: false,
+        showLoginError: true,
+        errorMessage: action.payload
+      }
+    }
+    case SIGNUP_FAILED: {
+      return {
+        ...state,
+        isApiCall: false,
+        showSignUpError: true,
+        errorMessage: action.payload
       }
     }
     case API_START: {

@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export const CountReducer = (state = initialState, action) => {
-  console.log('inside reducer');
   switch (action.type) {
     case INCREMENT: {
       return { ...state, count: state.count + 1 }; 

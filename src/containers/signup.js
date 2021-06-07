@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { loginUser } from './../redux/actions/login';
-import LoginPage from './../components/login';
+import { signUpUser } from './../redux/actions/login';
+import SingUpPage from './../components/signup';
 
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         isApiCall: state.user.isApiCall,
-        showLoginError: state.user.showLoginError,
+        showSignUpError: state.user.showSignUpError,
         errorMessage: state.user.errorMessage
     }
 }
 
 const mapDispatchToProps = {
-    loginUser
-};
+    signUpUser,
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SingUpPage);
