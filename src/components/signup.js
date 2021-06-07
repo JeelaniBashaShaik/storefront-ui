@@ -21,6 +21,7 @@ const SignUpPage = (props) => {
     });
 
     const signUpUser = useCallback(() => {
+        console.log(userDetails);
         props.signUpUser(userDetails);
     })
 
@@ -33,7 +34,7 @@ const SignUpPage = (props) => {
                 <TextField id="userEmail" label="Email" value={userDetails.userEmail} onChange={(event) => setUserDetails({...userDetails, userEmail: event.target.value})}/>
                 <FormControl component="fieldset" style={{marginTop: 20}}>
                 <FormLabel component="legend">Select Role</FormLabel>
-                <RadioGroup row defaultValue="Consumer">
+                <RadioGroup row defaultValue="Consumer" onChange={(event) => setUserDetails({...userDetails, userRole: event.target.value})}>
                     <FormControlLabel value="Consumer" control={<Radio color="primary" />} label="Consumer" labelPlacement="end" />
                     <FormControlLabel value="Store Operator" control={<Radio color="primary" />} label="Store Operator" labelPlacement="end" />
                     </RadioGroup>
