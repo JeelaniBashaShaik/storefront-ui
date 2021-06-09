@@ -33,7 +33,7 @@ h1, p {
 
 .landing-paper {
   height: 70vh;
-  width: 70vw;
+  width: 60vw;
 }
 
 .login-user-tabs {
@@ -59,7 +59,7 @@ h1, p {
 .tab-panel {
   border: 2px solid #004690;
   width: 87%;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .c-pointer {

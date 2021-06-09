@@ -49,11 +49,14 @@ const Landing = (props) => {
       <div className="center landing">
         <Paper elevation={3} className="landing-paper">
           <Grid container spacing={0} className="height-100">
-            <Grid item sm={12} md={6} lg={6} className="center">
-              <div>
-                <img style={{ maxWidth: '100%', height: 'auto' }} src={storeImage} alt="store" />
-                <Typography variant="h6" gutterBottom className="home-page-intro">
-                  Welcome to <strong>StoreFront</strong>. Now browse and place orders from your nearby stores
+            <Grid item sm={12} md={6} lg={6} className="center" style={{flexDirection: 'column'}}>
+            <Typography variant="h2">
+                storefront
+              </Typography>
+              <div className="center" style={{flexDirection: 'column'}}>
+                <img style={{ maxWidth: '100%', height: 'auto' }} src={storeImage} alt="store" height={370} width={400} />
+                <Typography variant="h6" className="center home-page-intro">
+                  Welcome, now browse and place orders from your nearby stores
               </Typography>
               </div>
             </Grid>

@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import GoIcon from '@material-ui/icons/ArrowForward';
 import Snackbar from '@material-ui/core/Snackbar';
+import { Typography } from '@material-ui/core';
 
 const LoginPage = (props) => {
 
@@ -20,8 +21,8 @@ const LoginPage = (props) => {
     return (
         <div className="center" style={{ height: 250 }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <TextField id="userPrimaryNumber" label="Phone Number" value={userDetails.userPrimaryNumber} onChange={(event) => setUserDetails({...userDetails, userPrimaryNumber: event.target.value})}/>
-                <TextField id="userPassword" type="password" label="Password" value={userDetails.userPassword} onChange={(event) => setUserDetails({...userDetails, userPassword: event.target.value})}/>
+                <TextField id="userPrimaryNumber" size="small" label="Phone Number" value={userDetails.userPrimaryNumber} onChange={(event) => setUserDetails({...userDetails, userPrimaryNumber: event.target.value})}/>
+                <TextField id="userPassword" size="small" type="password" label="Password" value={userDetails.userPassword} onChange={(event) => setUserDetails({...userDetails, userPassword: event.target.value})}/>
                 <Button variant="contained" color="primary" className="button-curve" style={{ marginTop: 25, cursor: 'pointer' }}
                     endIcon={props.isApiCall ? <CircularProgress color="inherit" size={20}/> : <GoIcon />} onClick={loginUser} disabled={props.isApiCall}>
                     Authenticate 
