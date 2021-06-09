@@ -21,7 +21,6 @@ const SignUpPage = (props) => {
     });
 
     const signUpUser = useCallback(() => {
-        console.log(userDetails);
         props.signUpUser(userDetails);
     })
 

@@ -3,8 +3,6 @@ import axios from 'axios';
 
 const serverUrl = 'https://storefront-be.herokuapp.com';
 
-// export const login = (payload) => ({type: LOGIN, payload});
-
 export const logout = () => ({type: LOGOUT});
 
 export const userVerified = (payload) => ({type: USER_VERIFIED, payload});
@@ -35,7 +33,6 @@ export const signUpUser = (userDetails) => {
             if (data && data.success) {
                 dispatch(userVerified(data));
             } else {
-                console.log('calling signup failed');
                 dispatch(signUpFailed(data.errorMessage));
             }
         })

@@ -33,17 +33,16 @@ function TabPanel(props) {
 }
 
 const Landing = (props) => {
-  if (props.userRole) {
-    //  return <Redirect to="/home" />
-  } else if (!props.userRole && props.isLoggedIn) {
-    //  return <Redirect to="/profileWizard" />
-  }
 
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  if (props.userRole && props.isLoggedIn) {
+    return <Redirect to="/home" />
+  }
 
   return (
     <React.Fragment>
