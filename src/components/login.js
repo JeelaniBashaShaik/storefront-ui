@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import GoIcon from '@material-ui/icons/ArrowForward';
 import Snackbar from '@material-ui/core/Snackbar';
-import { Typography } from '@material-ui/core';
 
 const LoginPage = (props) => {
 

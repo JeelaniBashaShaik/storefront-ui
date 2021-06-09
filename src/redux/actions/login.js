@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START, LOGIN_FAILED, SIGNUP_FAILED } from '../types/login';
+import { LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START, LOGIN_FAILED, SIGNUP_FAILED } from '../types/login';
 import axios from 'axios';
 
 const serverUrl = 'https://storefront-be.herokuapp.com';
