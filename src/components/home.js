@@ -13,7 +13,7 @@ const Home = (props) => {
 
     const logout = React.useCallback(() => {
         props.logout();
-    });
+    }, [props]);
 
     React.useEffect(() => {
         if (props.userRole) {
@@ -23,7 +23,7 @@ const Home = (props) => {
                 props.history.push('/home/consumerLanding');
             }
         }
-    }, [props.userRole])
+    }, [props.userRole, props.history])
 
 
     return (

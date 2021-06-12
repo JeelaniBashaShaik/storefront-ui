@@ -40,6 +40,10 @@ const Landing = (props) => {
     setValue(newValue);
   };
 
+  const resetToLogin = () => {
+    setValue(0);
+  }
+
   if (props.userRole && props.isLoggedIn) {
     return <Redirect to="/home" />
   }
@@ -80,7 +84,7 @@ const Landing = (props) => {
                       <LoginPage />
                   </TabPanel>
                   <TabPanel value={value} index={1} className="height-400 tab-panel">
-                    <SignUpPage />
+                    <SignUpPage resetToLogin={resetToLogin}/>
                   </TabPanel>
                 </Grid>
               </Grid>

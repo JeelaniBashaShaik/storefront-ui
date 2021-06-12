@@ -6,3 +6,5 @@ export const USER_VERIFIED = 'USER_VERIFIED';
 export const API_START = 'API_START';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const SIGNUP_FAILED = 'SIGNUP_FAILED';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const RESET_SNACK_MESSAGE = 'RESET_SNACK_MESSAGE';

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START, LOGIN_FAILED, SIGNUP_FAILED } from '../types/login';
+import { LOGIN, LOGOUT, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAIL, USER_VERIFIED, API_START, LOGIN_FAILED, SIGNUP_FAILED, SIGNUP_SUCCESS, RESET_SNACK_MESSAGE } from '../types/login';
 
 const initialState = {
   isLoggedIn: false,
@@ -11,8 +11,9 @@ const initialState = {
   userAddress: '',
   userAcessToken: {},
   canNavigateToWelcome: false,
-  showLoginError: false,
-  errorMessage: ''
+  showSnackBar: false,
+  signUpMessage: '',
+  signUpSuccess: false
 };
 
 export const LoginReducer = (state = initialState, action) => {
@@ -60,26 +61,41 @@ export const LoginReducer = (state = initialState, action) => {
       }
     }
     case LOGIN_FAILED: {
-      console.log('login failed', action.payload)
       return {
         ...state,
         isApiCall: false,
-        showLoginError: true,
-        errorMessage: action.payload
+        loginMessage: action.payload
       }
     }
     case SIGNUP_FAILED: {
       return {
         ...state,
         isApiCall: false,
-        showSignUpError: true,
-        errorMessage: action.payload
+        signUpMessage: action.payload,
+        showSnackBar: true,
+        signUpSuccess: false
+      }
+    }
+    case SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        isApiCall: false,
+        signUpMessage: 'Sign-up success, you can login now !!!',
+        showSnackBar: true,
+        signUpSuccess: true
       }
     }
     case API_START: {
       return {
         ...state,
         isApiCall: true
+      }
+    }
+    case RESET_SNACK_MESSAGE: {
+      return {
+        ...state,
+        signUpMessage: '',
+        loginMessage: ''
       }
     }
     default: {

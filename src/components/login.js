@@ -1,12 +1,18 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import GoIcon from '@material-ui/icons/ArrowForward';
 import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const LoginPage = (props) => {
-
+    
+    const [showSnackBar, setShowSnackBar] = useState(false);
     const [userDetails, setUserDetails] = useState({
         userPrimaryNumber: '',
         userPassword: ''
@@ -14,7 +20,20 @@ const LoginPage = (props) => {
 
     const loginUser = useCallback(() => {
         props.loginUser(userDetails);
-    })
+    }, [props, userDetails]);
+
+    const hideSnackBar = useCallback(() => {
+        setShowSnackBar(false);
+    }, []);
+
+    useEffect(() => {
+        if (props.loginMessage) {
+            setShowSnackBar(true);
+            setTimeout(() => {
+                props.resetSnackBarMessage();
+            }, 2000);
+        }
+    }, [props])
 
     return (
         <div className="center" style={{ height: 250 }}>
@@ -27,11 +46,13 @@ const LoginPage = (props) => {
                 </Button>
                 <Snackbar
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    open={props.showLoginError}
-                    message={props.errorMessage}
-                    autoHideDuration={7000}
-                    className="red-alert"
-                />
+                    open={showSnackBar}
+                    autoHideDuration={2000}
+                    onClose={hideSnackBar}>
+                    <Alert severity="error" onClose={hideSnackBar}>
+                        {props.loginMessage}
+                    </Alert>
+                </Snackbar>
             </div>
         </div>
     )

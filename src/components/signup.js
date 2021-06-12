@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
@@ -9,20 +9,51 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
 const SignUpPage = (props) => {
 
+    const [showSnackBar, setShowSnackBar] = useState(false);
     const [userDetails, setUserDetails] = useState({
         userPrimaryNumber: '',
         userPassword: '',
         userName: '',
         userEmail: '',
-        userRole: ''
+        userRole: 'Consumer'
     });
 
     const signUpUser = useCallback(() => {
         props.signUpUser(userDetails);
-    })
+    }, [props, userDetails]);
+
+    const hideSnackBar = useCallback(() => {
+        setShowSnackBar(false);
+    }, []);
+    
+    useEffect(() => {
+        if (props.signUpMessage) {
+            setShowSnackBar(true);
+            setTimeout(() => {
+                props.resetSnackBarMessage();
+                props.resetToLogin();
+            }, 2000);
+        }
+        if (props.signUpSuccess) {
+            setUserDetails({
+                userPrimaryNumber: '',
+                userPassword: '',
+                userName: '',
+                userEmail: '',
+                userRole: ''    
+            });
+        }
+    }, [props]);
+    
 
     return (
         <div className="center" style={{ height: 250 }}>
@@ -44,11 +75,13 @@ const SignUpPage = (props) => {
                 </Button>
                 <Snackbar
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                    open={props.showSignUpError}
-                    message={props.errorMessage}
-                    autoHideDuration={7000}
-                    className="red-alert"
-                />
+                    open={showSnackBar}
+                    autoHideDuration={2000}
+                    onClose={hideSnackBar}>
+                    <Alert severity={props.signUpSuccess ? "success" : "error"} onClose={hideSnackBar}>
+                        {props.signUpMessage}
+                    </Alert>
+                </Snackbar>
             </div>
         </div>
     )
