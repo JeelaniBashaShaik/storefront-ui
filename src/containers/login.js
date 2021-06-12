@@ -1,21 +1,18 @@
 import { connect } from 'react-redux';
-import { login, checkForUser } from './../redux/actions/login';
+import { loginUser, resetSnackBarMessage } from './../redux/actions/login';
 import LoginPage from './../components/login';
 
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        userName: state.user.userName,
-        userEmail: state.user.userEmail,
-        userImage: state.user.userImage,
-        userRole: state.user.userRole,
-        isApiCall: state.user.isApiCall
+        isApiCall: state.user.isApiCall,
+        loginMessage: state.user.loginMessage
     }
 }
 
 const mapDispatchToProps = {
-    login,
-    checkForUser
+    loginUser,
+    resetSnackBarMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
