@@ -47,17 +47,16 @@ export const LoginReducer = (state = initialState, action) => {
       };
     }
     case USER_VERIFIED: {
-      const { userRole, userEmail, userName, userAddress, userPrimaryNumber, userSecondaryNumber } = action.payload;
+      const { userRole, userEmail, userName, userPrimaryNumber, token } = action.payload;
       return {
         ...state,
         userRole,
         userEmail,
         userName,
-        userAddress,
         userPrimaryNumber,
-        userSecondaryNumber,
         isLoggedIn: true,
-        isApiCall: false
+        isApiCall: false,
+        token
       }
     }
     case LOGIN_FAILED: {

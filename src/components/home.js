@@ -8,6 +8,7 @@ import Constants from './../constants';
 import ConsumerLanding from './consumer/consumerLanding';
 import StoreLanding from './store/storeLanding';
 import ProtectedRoute from './../containers/protectedRoute';
+import StoreDetails from './../containers/storeDetails';
 
 const Home = (props) => {
 
@@ -30,7 +31,7 @@ const Home = (props) => {
         <div style={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h4" style={{ flexGrow: 1 }}>
+                    <Typography variant="h4" style={{ flexGrow: 1 }} component={'span'}>
                         StoreFront
                         </Typography>
                     <Button color="secondary" variant="contained" onClick={logout} >
@@ -44,6 +45,9 @@ const Home = (props) => {
                 </ProtectedRoute>
                 <ProtectedRoute exact path="/home/consumerLanding">
                     <ConsumerLanding />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/home/storeLanding/storeDetails">
+                    <StoreDetails />
                 </ProtectedRoute>
             </Switch>
         </div>

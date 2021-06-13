@@ -84,14 +84,14 @@ export default class ProfileWizard extends React.Component {
               <Grid item sm={12} md={6} lg={6}>
                 <Paper elevation={3} onClick={() => this.setRole('Store-Operator')}>
                   <div style={{height:'150px', width: '150px'}} className="center">
-                    <Typography variant="h6">Store Operator</Typography>
+                    <Typography variant="h6" component={'span'}>Store Operator</Typography>
                   </div>
               </Paper>
               </Grid>
               <Grid item sm={12} md={6} lg={6}>
                 <Paper elevation={3} onClick={() => this.setRole('Consumer')}>
                 <div style={{height:'150px', width: '150px'}} className="center">
-                    <Typography variant="h6">Consumer</Typography>
+                    <Typography variant="h6" component={'span'}>Consumer</Typography>
                   </div>
               </Paper>
               </Grid>

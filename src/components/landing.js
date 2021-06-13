@@ -25,7 +25,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={'span'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -54,12 +54,12 @@ const Landing = (props) => {
         <Paper elevation={3} className="landing-paper">
           <Grid container spacing={0} className="height-100">
             <Grid item sm={12} md={6} lg={6} className="center" style={{flexDirection: 'column'}}>
-            <Typography variant="h2">
+            <Typography variant="h2" component={'span'}>
                 storefront
               </Typography>
               <div className="center" style={{flexDirection: 'column'}}>
                 <img style={{ maxWidth: '100%', height: 'auto' }} src={storeImage} alt="store" height={370} width={400} />
-                <Typography variant="h6" className="center home-page-intro">
+                <Typography variant="h6" className="center home-page-intro" component={'span'}>
                   Welcome, now browse and place orders from your nearby stores
               </Typography>
               </div>
