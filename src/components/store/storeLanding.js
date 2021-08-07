@@ -13,11 +13,11 @@ const storeItems = [
 
 const StoreLanding = (props) => {
 
-    const navigate = React.useCallback((itemLink) => {
+    const navigate = (itemLink) => {
         if (itemLink){
            props.history.push(itemLink);
         }
-    })
+    }
     return (
         <div className="center store-home">
             <Grid container spacing={0}>

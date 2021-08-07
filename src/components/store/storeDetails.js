@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -38,6 +37,21 @@ const StoreDetails = (props) => {
         userLinkedNumber: ''
     });
 
+    const resetStore = () => {
+        setStoreDetails({
+            ...storeDetails,
+            storeId: '',
+            storeName: '',
+            storeEmail: '',
+            storePrimaryNumber: '',
+            storeSecondaryNumber: '',
+            storeAddress: '',
+            storeImageUrl: '',
+            storeType: '',
+            storePincode: '',    
+        })
+    }
+
     React.useEffect(() => {
         if (!storeDetails.userLinkedNumber) {
             setStoreDetails({...storeDetails, userLinkedNumber: props.userLinkedNumber.toString()});
@@ -51,13 +65,15 @@ const StoreDetails = (props) => {
         if (props.addStoreSuccess) {
             resetStore();
         }
-    }, [storeDetails.userLinkedNumber, props.storeApiMessage, props.addStoreSuccess]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [storeDetails.userLinkedNumber, props.storeApiMessage, props.addStoreSuccess, resetStore]);
 
     React.useEffect(() => {
         props.getUserStores(props.userLinkedNumber, props.token);
         if (props.userStores) {
             console.log(props.userStores)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const addStore = () => {
@@ -78,20 +94,7 @@ const StoreDetails = (props) => {
        
     }
 
-    const resetStore = () => {
-        setStoreDetails({
-            ...storeDetails,
-            storeId: '',
-            storeName: '',
-            storeEmail: '',
-            storePrimaryNumber: '',
-            storeSecondaryNumber: '',
-            storeAddress: '',
-            storeImageUrl: '',
-            storeType: '',
-            storePincode: '',    
-        })
-    }
+    
     return (
         <div className="store-details">
             <Grid container spacing={1}>
@@ -175,7 +178,7 @@ const StoreDetails = (props) => {
                                            <Typography variant="h6" component={'span'}>
                                 {store.storeName}
                             </Typography>
-                            <img src={store.storeImageUrl} height="100" width="100" />
+                            <img src={store.storeImageUrl} height="100" width="100" alt="store" />
                                        </div>
                                    )
                                })} 
